@@ -9,11 +9,13 @@
     "scripts": {
         "test": "vitest run --config ./test/vitest.config.mts",
         "test:cov": "vitest run --config ./test/vitest.config.mts --coverage",
-        "bench": "vitest bench --run --config ./test/vitest.config.mts"
+        "bench": "vitest bench --run --config ./test/vitest.config.mts",
+        "check": "biome check --write"
     },
     "devDependencies": {
-        "@types/node": "^22.13.10",
-        "typescript": "^5.8.2",
-        "vitest": "^3.0.9"
+        "@biomejs/biome": "^1.9.4",
+        "@types/node": "^22.14.1",
+        "typescript": "^5.8.3",
+        "vitest": "^3.1.1"
     }
 }

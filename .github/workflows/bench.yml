@@ -1,0 +1,31 @@
+name: Bench
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  bench:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: [20, 22]
+    runs-on: ${{ matrix.os }}
+    continue-on-error: true
+    if: startsWith(github.event.pull_request.title, "bench:")
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - run: npm ci
+
+      - run: npm run bench
+
+      - run: echo -e "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n\`\`\`json\n$(cat bench.json)\n\`\`\`" > comment.txt
+
+      - run: gh issue comment ${{ github.event.pull_request.number }} --body-file comment.txt

@@ -21,5 +21,8 @@ export default defineConfig({
                 100: true,
             },
         },
+        benchmark: {
+            outputJson: "bench.json",
+        },
     },
 });
