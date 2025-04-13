@@ -14,6 +14,8 @@ jobs:
         node: [20, 22]
     runs-on: ${{ matrix.os }}
     continue-on-error: true
+    permissions:
+      pull-requests: write
     if: ${{ startsWith(github.event.pull_request.title, 'bench:') }}
     steps:
       - uses: actions/checkout@v4
@@ -29,3 +31,5 @@ jobs:
       - run: echo -e "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n\`\`\`json\n$(cat bench.json)\n\`\`\`" > comment.txt
 
       - run: gh issue comment ${{ github.event.pull_request.number }} --body-file comment.txt
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
