@@ -8,10 +8,8 @@ export default defineConfig({
         coverage: {
             enabled: false,
             provider: "v8",
-            include: ["src/**"],
+            include: ["src/**.{js,ts}"],
             exclude: ["src/dev/**"],
-            extension: [".ts"],
-            // exclude: [],
             clean: true,
             cleanOnRerun: true,
             reportsDirectory: "coverage",
