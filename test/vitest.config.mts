@@ -8,7 +8,7 @@ export default defineConfig({
         coverage: {
             enabled: false,
             provider: "v8",
-            include: ["src/**.{js,ts}"],
+            include: ["src/**/**.{js,ts}"],
             exclude: ["src/dev/**"],
             clean: true,
             cleanOnRerun: true,
