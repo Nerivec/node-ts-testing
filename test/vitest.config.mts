@@ -2,9 +2,9 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
     test: {
-        onConsoleLog() {
-            return false;
-        },
+        // onConsoleLog() {
+        //     return false;
+        // },
         coverage: {
             enabled: false,
             provider: "v8",
